@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIg-RK-f57">
+                                <rect key="frame" x="20" y="44" width="560" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="DCn-FD-h8S"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="0.9999127984046936" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N54-cG-ifo">
+                                <rect key="frame" x="20" y="99" width="560" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="lgC-Jy-WRM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.9999127984046936" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cmn-wM-0Hy">
+                                <rect key="frame" x="0.0" y="486" width="600" height="114"/>
+                                <color key="backgroundColor" red="0.082123227417469025" green="0.71256822347640991" blue="0.86102229356765747" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Cmn-wM-0Hy" secondAttribute="height" multiplier="100:19" id="8pE-Ap-Oew"/>
+                                    <constraint firstAttribute="width" constant="600" id="QuW-nE-YtG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Tweet">
+                                    <color key="titleColor" red="0.99994784593582153" green="1" blue="0.9998740553855896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tweetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dfU-Yg-G1U"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="missingAlbum" translatesAutoresizingMaskIntoConstraints="NO" id="VsX-bz-x3c">
+                                <rect key="frame" x="0.0" y="238" width="600" height="249"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="VsX-bz-x3c" secondAttribute="height" multiplier="1:1" id="7G1-7r-sSM"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14116674661636353" green="0.14118319749832153" blue="0.14115303754806519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="VsX-bz-x3c" firstAttribute="top" secondItem="N54-cG-ifo" secondAttribute="bottom" constant="102" id="0x0-cA-pjg"/>
+                            <constraint firstItem="Cmn-wM-0Hy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="13t-vj-rsm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Cmn-wM-0Hy" secondAttribute="trailing" constant="-20" id="E6o-gB-UcS"/>
+                            <constraint firstItem="vIg-RK-f57" firstAttribute="leading" secondItem="N54-cG-ifo" secondAttribute="leading" id="ID3-Y0-MVT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cmn-wM-0Hy" secondAttribute="bottom" id="JY7-Da-22b"/>
+                            <constraint firstItem="Cmn-wM-0Hy" firstAttribute="top" secondItem="VsX-bz-x3c" secondAttribute="bottom" id="KKn-IS-1sv"/>
+                            <constraint firstItem="N54-cG-ifo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TQq-oU-KBd"/>
+                            <constraint firstItem="vIg-RK-f57" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="24" id="UvK-6j-hAU"/>
+                            <constraint firstItem="VsX-bz-x3c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aAD-d0-MHM"/>
+                            <constraint firstItem="Cmn-wM-0Hy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dC6-ud-a8y"/>
+                            <constraint firstItem="N54-cG-ifo" firstAttribute="top" secondItem="vIg-RK-f57" secondAttribute="bottom" constant="5" id="oBD-21-sei"/>
+                            <constraint firstItem="N54-cG-ifo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="oqz-jQ-a4e"/>
+                            <constraint firstItem="vIg-RK-f57" firstAttribute="trailing" secondItem="N54-cG-ifo" secondAttribute="trailing" id="siK-ND-MoP"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cmn-wM-0Hy" secondAttribute="bottom" id="tlU-uS-9VU"/>
+                            <constraint firstItem="VsX-bz-x3c" firstAttribute="leading" secondItem="Cmn-wM-0Hy" secondAttribute="leading" id="yXn-Oq-Che"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="0x0-cA-pjg"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="albumArt" destination="VsX-bz-x3c" id="eGo-T2-juF"/>
+                        <outlet property="artist" destination="N54-cG-ifo" id="7Wh-3G-FVB"/>
+                        <outlet property="songTitle" destination="vIg-RK-f57" id="RTD-v5-mby"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="431" y="389"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="missingAlbum" width="2000" height="2000"/>
+    </resources>
+</document>
