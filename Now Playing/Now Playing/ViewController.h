@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NowPlayingDelegate.h"
+#import "DBImageColorPicker.h"
 @import MediaPlayer;
 @import Social;
 
@@ -19,15 +20,22 @@
   UISwipeGestureRecognizer *swipeLeftRecognizer;
   UISwipeGestureRecognizer *swipeRightRecognizer;
   UITapGestureRecognizer *tapRecognizer;
+  __weak IBOutlet UIButton *tweetButton;
+  __weak IBOutlet UIButton *facebookButton;
+  CALayer *gradient;
 }
 
 @property (strong, nonatomic) SLComposeViewController *tweetSheet;
+@property (strong, nonatomic) SLComposeViewController *postSheet;
+@property (nonatomic, strong) DBImageColorPicker *colorPicker;
 
 - (void)updateInfo;
 - (IBAction)tweetButton:(id)sender;
 - (void)handleSwipeLeft;
 - (void)handleSwipeRight;
 - (void)handleTap;
+- (void)setBackgroundColor:(UIImage*)image;
+- (void)setupGradient;
 
 @end
 
