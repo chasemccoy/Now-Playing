@@ -11,14 +11,15 @@
 		2E01F34E1B59436500034579 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E01F34D1B59436500034579 /* AppDelegate.m */; };
 		2E01F3541B59436500034579 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E01F3521B59436500034579 /* Main.storyboard */; };
 		2E01F3561B59436500034579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E01F3551B59436500034579 /* Assets.xcassets */; };
-		2E01F3591B59436500034579 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E01F3571B59436500034579 /* LaunchScreen.storyboard */; };
 		2E01F3641B59436500034579 /* Now_PlayingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E01F3631B59436500034579 /* Now_PlayingTests.m */; };
 		2E01F36F1B59436500034579 /* Now_PlayingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E01F36E1B59436500034579 /* Now_PlayingUITests.m */; };
 		2E01F3811B594D9E00034579 /* NowPlayingDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E01F3801B594D9E00034579 /* NowPlayingDelegate.m */; };
 		2E2A40921B599AEF0065A5B3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2A40911B599AEF0065A5B3 /* Social.framework */; };
+		2E54A5401B5BFBAA0079CC05 /* MGInstagram.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E54A53F1B5BFBAA0079CC05 /* MGInstagram.m */; };
 		2EA303011B5AB0F00055E3EA /* DBImageColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA302FE1B5AB0F00055E3EA /* DBImageColorPicker.m */; };
 		2EA303021B5AB0F00055E3EA /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA303001B5AB0F00055E3EA /* UIImage+Color.m */; };
 		2EA303041B5AB1570055E3EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA303031B5AB1570055E3EA /* ViewController.m */; };
+		2EE987C01B5C0621009E4610 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EE987BE1B5C0621009E4610 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +47,6 @@
 		2E01F34F1B59436500034579 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2E01F3531B59436500034579 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2E01F3551B59436500034579 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2E01F3581B59436500034579 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E01F35A1B59436500034579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E01F35F1B59436500034579 /* Now PlayingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Now PlayingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E01F3631B59436500034579 /* Now_PlayingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Now_PlayingTests.m; sourceTree = "<group>"; };
@@ -57,11 +57,14 @@
 		2E01F37F1B594D9E00034579 /* NowPlayingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingDelegate.h; sourceTree = "<group>"; };
 		2E01F3801B594D9E00034579 /* NowPlayingDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingDelegate.m; sourceTree = "<group>"; };
 		2E2A40911B599AEF0065A5B3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		2E54A53E1B5BFBAA0079CC05 /* MGInstagram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGInstagram.h; sourceTree = "<group>"; };
+		2E54A53F1B5BFBAA0079CC05 /* MGInstagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGInstagram.m; sourceTree = "<group>"; };
 		2EA302FD1B5AB0F00055E3EA /* DBImageColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBImageColorPicker.h; sourceTree = "<group>"; };
 		2EA302FE1B5AB0F00055E3EA /* DBImageColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBImageColorPicker.m; sourceTree = "<group>"; };
 		2EA302FF1B5AB0F00055E3EA /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
 		2EA303001B5AB0F00055E3EA /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		2EA303031B5AB1570055E3EA /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2EE987BF1B5C0621009E4610 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Now Playing/Base.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,9 +127,11 @@
 				2EA302FE1B5AB0F00055E3EA /* DBImageColorPicker.m */,
 				2EA302FF1B5AB0F00055E3EA /* UIImage+Color.h */,
 				2EA303001B5AB0F00055E3EA /* UIImage+Color.m */,
+				2E54A53E1B5BFBAA0079CC05 /* MGInstagram.h */,
+				2E54A53F1B5BFBAA0079CC05 /* MGInstagram.m */,
 				2E01F3521B59436500034579 /* Main.storyboard */,
+				2EE987BE1B5C0621009E4610 /* LaunchScreen.storyboard */,
 				2E01F3551B59436500034579 /* Assets.xcassets */,
-				2E01F3571B59436500034579 /* LaunchScreen.storyboard */,
 				2E01F3491B59436500034579 /* Supporting Files */,
 			);
 			path = "Now Playing";
@@ -263,7 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E01F3591B59436500034579 /* LaunchScreen.storyboard in Resources */,
+				2EE987C01B5C0621009E4610 /* LaunchScreen.storyboard in Resources */,
 				2E01F3561B59436500034579 /* Assets.xcassets in Resources */,
 				2E01F3541B59436500034579 /* Main.storyboard in Resources */,
 			);
@@ -293,6 +298,7 @@
 				2EA303041B5AB1570055E3EA /* ViewController.m in Sources */,
 				2EA303011B5AB0F00055E3EA /* DBImageColorPicker.m in Sources */,
 				2E01F34E1B59436500034579 /* AppDelegate.m in Sources */,
+				2E54A5401B5BFBAA0079CC05 /* MGInstagram.m in Sources */,
 				2EA303021B5AB0F00055E3EA /* UIImage+Color.m in Sources */,
 				2E01F3811B594D9E00034579 /* NowPlayingDelegate.m in Sources */,
 				2E01F34B1B59436500034579 /* main.m in Sources */,
@@ -339,12 +345,13 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		2E01F3571B59436500034579 /* LaunchScreen.storyboard */ = {
+		2EE987BE1B5C0621009E4610 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2E01F3581B59436500034579 /* Base */,
+				2EE987BF1B5C0621009E4610 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

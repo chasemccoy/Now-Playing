@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NowPlayingDelegate.h"
 #import "DBImageColorPicker.h"
+#import "MGInstagram.h"
 @import MediaPlayer;
 @import Social;
 

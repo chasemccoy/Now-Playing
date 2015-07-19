@@ -149,44 +149,21 @@
 }
 
 - (IBAction)facebookButton:(id)sender {
-  if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
-    _postSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+  if (1) {
+    [MGInstagram setPhotoFileName:kInstagramOnlyPhotoFileName];
     
-    NSString *message = [NSString stringWithFormat:@"🎵 %@ by %@ ", [nowPlaying getSongTitle], [nowPlaying getArtist]];
-    [_postSheet setInitialText:message];
     CGSize artworkImageViewSize = albumArt.bounds.size;
-    [_postSheet addImage:[nowPlaying getAlbumArt:artworkImageViewSize]];
-    
-    SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result)
-    {
-      switch(result){
-        case SLComposeViewControllerResultCancelled:
-        default:
-        {
-          NSLog(@"Cancelled.....");
-        }
-          break;
-        case SLComposeViewControllerResultDone:
-        {
-          NSLog(@"Posted....");
-        }
-          break;
-      }
-      
-      [_postSheet dismissViewControllerAnimated:YES completion:nil];
-    };
-    
-    [_postSheet setCompletionHandler:completionHandler];
-    
-    [self presentViewController:_postSheet animated:YES completion:nil];
+    UIImage *artwork = [nowPlaying getAlbumArt:artworkImageViewSize];
+    NSString *message = [NSString stringWithFormat:@"🎵 %@ by %@ ", [nowPlaying getSongTitle], [nowPlaying getArtist]];
+    [MGInstagram postImage:artwork withCaption:message inView:self.view];
   }
   else {
-    NSLog(@"Facebook not configured.");
-    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"No Facebook Accounts"
-                                                         message:@"You need to setup a Facebook account in Settings."
+    NSLog(@"Instagram not installed.");
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Instagram Not Installed"
+                                                         message:@"You need to install Instagram first."
                                                         delegate:self
                                                cancelButtonTitle:@"OK"
-                                               otherButtonTitles:@"Settings", nil];
+                                               otherButtonTitles:nil, nil];
     [errorAlert show];
   }
 }
