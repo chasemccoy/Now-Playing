@@ -175,10 +175,6 @@
   [self setNeedsStatusBarAppearanceUpdate];
   [self setupGradient];
   
-  if(![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstLaunch"]) {
-    [self showTutorial];
-  }
-  
   nowPlaying = [[NowPlaying alloc] init];
   
   [self updateInfo];
@@ -241,17 +237,6 @@
   
   gradient.frame = self.view.bounds;
   [self.view.layer insertSublayer:gradient atIndex:0];
-}
-
-- (void)showTutorial {
-  UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"First Launch"
-                                                       message:@"Your code works, dummy."
-                                                      delegate:self
-                                             cancelButtonTitle:@"OK"
-                                             otherButtonTitles:nil, nil];
-  [errorAlert show];
-  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstLaunch"];
-
 }
 
 @end

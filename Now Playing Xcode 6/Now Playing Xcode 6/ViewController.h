@@ -37,7 +37,6 @@
 - (void)handleTap;
 - (void)setBackgroundColor:(UIImage*)image;
 - (void)setupGradient;
-- (void)showTutorial;
 
 @end
 
