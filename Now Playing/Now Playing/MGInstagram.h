@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Mark Glagola. All rights reserved.
 //
 
+// https://github.com/mglagola/MGInstagram
+// https://instagram.com/developer/mobile-sharing/iphone-hooks/?hl=en
+
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 

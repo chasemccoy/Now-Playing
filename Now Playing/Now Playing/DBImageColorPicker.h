@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 DenisBogatyrev. All rights reserved.
 //
 
+// https://github.com/d0ping/DBImageColorPicker
+
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, DBImageColorPickerBackgroundType) {
