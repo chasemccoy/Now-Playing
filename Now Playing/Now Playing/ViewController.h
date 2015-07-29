@@ -23,7 +23,6 @@
   UITapGestureRecognizer *tapRecognizer;
   __weak IBOutlet UIButton *tweetButton;
   __weak IBOutlet UIButton *facebookButton;
-  CALayer *gradient;
 }
 
 @property (strong, nonatomic) SLComposeViewController *tweetSheet;
@@ -36,7 +35,6 @@
 - (void)handleSwipeRight;
 - (void)handleTap;
 - (void)setBackgroundColor:(UIImage*)image;
-- (void)setupGradient;
 - (void)showTutorial;
 
 @end
