@@ -19,15 +19,11 @@
   if (songTitle.text == nil) {
     songTitle.text = @"Play a song!";
     tweetButton.enabled = NO;
-    facebookButton.enabled = NO;
     tweetButton.hidden = YES;
-    facebookButton.hidden = YES;
   }
   else {
     tweetButton.enabled = YES;
-    facebookButton.enabled = YES;
     tweetButton.hidden = NO;
-    facebookButton.hidden = NO;
   }
   
   artist.text = [nowPlaying getArtist];
@@ -97,16 +93,63 @@
 
 
 
+- (void)getSongURL {
+  NSInteger numberOfResults = 1;
+  NSString *searchString = [NSString stringWithFormat:@"%@ %@", [nowPlaying getSongTitle], [nowPlaying getArtist]];
+  
+  NSString *encodedSearchString = [searchString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  NSString *finalSearchString = [NSString stringWithFormat:@"https://itunes.apple.com/search?term=%@&entity=song&entity=musicTrack&limit=%ld", encodedSearchString, numberOfResults];
+  
+  NSURL *searchURL = [NSURL URLWithString:finalSearchString];
+  
+  NSError *error = nil;
+  NSData *data = [[NSData alloc] initWithContentsOfURL:searchURL options:NSDataReadingUncached error:&error];
+  
+  if (data && !error) {
+    NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    NSArray *array = [JSON objectForKey:@"results"];
+    NSDictionary *firstResult = array[0];
+    NSString *trackViewURL = [firstResult objectForKey:@"trackViewUrl"];
+    if (trackViewURL) {
+      NSString *urlString = [NSString stringWithFormat:@"%@&app=music", trackViewURL];
+      self.songURL = [NSURL URLWithString:urlString];
+    }
+    else {
+      self.songURL = nil;
+    }
+  }
+
+}
+
+
+
 // ****************************************
 // Post in background: http://stackoverflow.com/questions/9423447/ios-5-twitter-framework-tweeting-without-user-input-and-confirmation-modal-vie
 // ****************************************
 
 - (IBAction)tweetButton:(id)sender {
+  [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    [self createTweetSheet];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+  });
+}
+
+
+
+-(void)createTweetSheet {
   if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
     _tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
     
-    NSString *message = [NSString stringWithFormat:@"Listening to %@ by %@ ", [nowPlaying getSongTitle], [nowPlaying getArtist]];
+    NSString *message = [NSString stringWithFormat:@"Listening to %@ by %@", [nowPlaying getSongTitle], [nowPlaying getArtist]];
     [_tweetSheet setInitialText:message];
+    
+    [self getSongURL];
+    NSLog(@"%@", self.songURL);
+    [self.tweetSheet addURL:self.songURL];
+    
     CGSize artworkImageViewSize = albumArt.bounds.size;
     [_tweetSheet addImage:[nowPlaying getAlbumArt:artworkImageViewSize]];
     
@@ -124,7 +167,7 @@
           NSLog(@"Posted....");
         }
           break;
-        }
+      }
       
       [_tweetSheet dismissViewControllerAnimated:YES completion:nil];
     };
@@ -144,25 +187,8 @@
   }
 }
 
-- (IBAction)facebookButton:(id)sender {
-  if (1) {
-    [MGInstagram setPhotoFileName:kInstagramOnlyPhotoFileName];
-    
-    CGSize artworkImageViewSize = albumArt.bounds.size;
-    UIImage *artwork = [nowPlaying getAlbumArt:artworkImageViewSize];
-    NSString *message = [NSString stringWithFormat:@"🎵 %@ by %@ ", [nowPlaying getSongTitle], [nowPlaying getArtist]];
-    [MGInstagram postImage:artwork withCaption:message inView:self.view];
-  }
-  else {
-    NSLog(@"Instagram not installed.");
-    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Instagram Not Installed"
-                                                         message:@"You need to install Instagram first."
-                                                        delegate:self
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil, nil];
-    [errorAlert show];
-  }
-}
+
+
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -187,21 +213,33 @@
                            object:musicPlayer];
 }
 
+
+
+
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   
   [self updateInfo];
 }
 
+
+
+
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
 
+
+
+
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
   return UIStatusBarStyleLightContent;
 }
+
+
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -212,10 +250,16 @@
   }
 }
 
+
+
+
 - (void)setBackgroundColor:(UIImage*)image {
   _colorPicker = [[DBImageColorPicker alloc] initFromImage:image withBackgroundType:DBImageColorPickerBackgroundTypeDefault];
   self.view.backgroundColor = [_colorPicker backgroundColor];
 }
+
+
+
 
 
 - (void)showTutorial {

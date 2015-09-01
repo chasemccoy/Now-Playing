@@ -10,6 +10,7 @@
 #import "NowPlayingDelegate.h"
 #import "DBImageColorPicker.h"
 #import "MGInstagram.h"
+#import "MBProgressHUD.h"
 @import MediaPlayer;
 @import Social;
 
@@ -22,15 +23,16 @@
   UISwipeGestureRecognizer *swipeRightRecognizer;
   UITapGestureRecognizer *tapRecognizer;
   __weak IBOutlet UIButton *tweetButton;
-  __weak IBOutlet UIButton *facebookButton;
 }
 
 @property (strong, nonatomic) SLComposeViewController *tweetSheet;
-@property (strong, nonatomic) SLComposeViewController *postSheet;
 @property (nonatomic, strong) DBImageColorPicker *colorPicker;
+@property (nonatomic, strong) NSURL *songURL;
 
 - (void)updateInfo;
+- (void)getSongURL;
 - (IBAction)tweetButton:(id)sender;
+-(void)createTweetSheet;
 - (void)handleSwipeLeft;
 - (void)handleSwipeRight;
 - (void)handleTap;
