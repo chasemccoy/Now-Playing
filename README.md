@@ -1,2 +1,2 @@
 # Now-Playing
-A new Cosmic Owl project.
+A quick way to tweet the current song.
