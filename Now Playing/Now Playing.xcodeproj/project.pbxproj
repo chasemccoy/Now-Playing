@@ -15,7 +15,6 @@
 		2E01F3811B594D9E00034579 /* NowPlayingDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E01F3801B594D9E00034579 /* NowPlayingDelegate.m */; };
 		2E0ADFB11B952C1600C08FF1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E0ADFB01B952C1600C08FF1 /* LaunchScreen.xib */; };
 		2E2A40921B599AEF0065A5B3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2A40911B599AEF0065A5B3 /* Social.framework */; };
-		2E54A5401B5BFBAA0079CC05 /* MGInstagram.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E54A53F1B5BFBAA0079CC05 /* MGInstagram.m */; };
 		2EA303011B5AB0F00055E3EA /* DBImageColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA302FE1B5AB0F00055E3EA /* DBImageColorPicker.m */; };
 		2EA303021B5AB0F00055E3EA /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA303001B5AB0F00055E3EA /* UIImage+Color.m */; };
 		2EA303041B5AB1570055E3EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA303031B5AB1570055E3EA /* ViewController.m */; };
@@ -48,8 +47,6 @@
 		2E01F3801B594D9E00034579 /* NowPlayingDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingDelegate.m; sourceTree = "<group>"; };
 		2E0ADFB01B952C1600C08FF1 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		2E2A40911B599AEF0065A5B3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		2E54A53E1B5BFBAA0079CC05 /* MGInstagram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGInstagram.h; sourceTree = "<group>"; };
-		2E54A53F1B5BFBAA0079CC05 /* MGInstagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGInstagram.m; sourceTree = "<group>"; };
 		2EA302FD1B5AB0F00055E3EA /* DBImageColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBImageColorPicker.h; sourceTree = "<group>"; };
 		2EA302FE1B5AB0F00055E3EA /* DBImageColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBImageColorPicker.m; sourceTree = "<group>"; };
 		2EA302FF1B5AB0F00055E3EA /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
@@ -107,14 +104,7 @@
 				2EA303031B5AB1570055E3EA /* ViewController.m */,
 				2E01F37F1B594D9E00034579 /* NowPlayingDelegate.h */,
 				2E01F3801B594D9E00034579 /* NowPlayingDelegate.m */,
-				2EA302FD1B5AB0F00055E3EA /* DBImageColorPicker.h */,
-				2EA302FE1B5AB0F00055E3EA /* DBImageColorPicker.m */,
-				2EA302FF1B5AB0F00055E3EA /* UIImage+Color.h */,
-				2EA303001B5AB0F00055E3EA /* UIImage+Color.m */,
-				2E54A53E1B5BFBAA0079CC05 /* MGInstagram.h */,
-				2E54A53F1B5BFBAA0079CC05 /* MGInstagram.m */,
-				2EE9C5531B95F5BD00AA6F2E /* MBProgressHUD.h */,
-				2EE9C5541B95F5BD00AA6F2E /* MBProgressHUD.m */,
+				2ED2B49F1B9BD9AB005F5DBA /* Helpers */,
 				2E01F3521B59436500034579 /* Main.storyboard */,
 				2E0ADFB01B952C1600C08FF1 /* LaunchScreen.xib */,
 				2E01F3551B59436500034579 /* Assets.xcassets */,
@@ -139,6 +129,19 @@
 				2E01F3651B59436500034579 /* Info.plist */,
 			);
 			path = "Now PlayingTests";
+			sourceTree = "<group>";
+		};
+		2ED2B49F1B9BD9AB005F5DBA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2EA302FD1B5AB0F00055E3EA /* DBImageColorPicker.h */,
+				2EA302FE1B5AB0F00055E3EA /* DBImageColorPicker.m */,
+				2EA302FF1B5AB0F00055E3EA /* UIImage+Color.h */,
+				2EA303001B5AB0F00055E3EA /* UIImage+Color.m */,
+				2EE9C5531B95F5BD00AA6F2E /* MBProgressHUD.h */,
+				2EE9C5541B95F5BD00AA6F2E /* MBProgressHUD.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		C03302487A48C72902B70008 /* Frameworks */ = {
@@ -252,7 +255,6 @@
 				2EA303041B5AB1570055E3EA /* ViewController.m in Sources */,
 				2EA303011B5AB0F00055E3EA /* DBImageColorPicker.m in Sources */,
 				2E01F34E1B59436500034579 /* AppDelegate.m in Sources */,
-				2E54A5401B5BFBAA0079CC05 /* MGInstagram.m in Sources */,
 				2EA303021B5AB0F00055E3EA /* UIImage+Color.m in Sources */,
 				2E01F3811B594D9E00034579 /* NowPlayingDelegate.m in Sources */,
 				2E01F34B1B59436500034579 /* main.m in Sources */,

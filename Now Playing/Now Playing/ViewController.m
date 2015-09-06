@@ -41,7 +41,8 @@
   }
   else
   {
-    albumArt.image = [UIImage imageNamed:@"missingAlbum.png"];
+    //albumArt.image = [UIImage imageNamed:@"missingAlbum.png"];
+    albumArt.image = nil;
     songTitle.textColor = [UIColor whiteColor];
     artist.textColor = [UIColor whiteColor];
   }
@@ -94,11 +95,11 @@
 
 
 - (void)getSongURL {
-  NSInteger numberOfResults = 1;
+  int numberOfResults = 1;
   NSString *searchString = [NSString stringWithFormat:@"%@ %@", [nowPlaying getSongTitle], [nowPlaying getArtist]];
   
   NSString *encodedSearchString = [searchString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-  NSString *finalSearchString = [NSString stringWithFormat:@"https://itunes.apple.com/search?term=%@&entity=song&entity=musicTrack&limit=%ld", encodedSearchString, numberOfResults];
+  NSString *finalSearchString = [NSString stringWithFormat:@"https://itunes.apple.com/search?term=%@&entity=song&entity=musicTrack&limit=%d", encodedSearchString, numberOfResults];
   
   NSURL *searchURL = [NSURL URLWithString:finalSearchString];
   
@@ -129,7 +130,12 @@
 // ****************************************
 
 - (IBAction)tweetButton:(id)sender {
-  [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+  MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+  hud.labelText = @"Getting Link...";
+  hud.color = self.colorPicker.backgroundColor;
+  hud.labelColor = self.colorPicker.secondaryTextColor;
+  hud.activityIndicatorColor = self.colorPicker.secondaryTextColor;
+  hud.dimBackground = YES;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
     [self createTweetSheet];
@@ -263,8 +269,8 @@
 
 
 - (void)showTutorial {
-  UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"First Launch"
-                                                       message:@"Your code works, dummy."
+  UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Hey there!"
+                                                       message:@"Tap the Tweet button to share the song you're listening to on Twitter. The album art and a link to the song will be included.\n\nTap the album art to play/pause.\n\nSwipe left to go the next song, and right to go to the previous one."
                                                       delegate:self
                                              cancelButtonTitle:@"OK"
                                              otherButtonTitles:nil, nil];
