@@ -200,6 +200,12 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
   
+  UIImage *image = [UIImage imageNamed:@"twitter.png"];
+  self.twitterLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.tweetBox.frame.size.height - 10, self.tweetBox.frame.size.height - 10)];
+  self.twitterLogo.image = image;
+  [self.tweetBox addSubview:self.twitterLogo];
+  [self.twitterLogo setCenter:CGPointMake(self.view.frame.size.width / 2, self.tweetBox.frame.size.height / 2)];
+  
   [self setNeedsStatusBarAppearanceUpdate];
   
   if(![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstLaunch"]) {

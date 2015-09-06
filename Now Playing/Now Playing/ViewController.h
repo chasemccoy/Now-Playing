@@ -27,6 +27,8 @@
 @property (strong, nonatomic) SLComposeViewController *tweetSheet;
 @property (nonatomic, strong) DBImageColorPicker *colorPicker;
 @property (nonatomic, strong) NSURL *songURL;
+@property (strong, nonatomic) IBOutlet UIButton *tweetBox;
+@property (strong, nonatomic) UIImageView *twitterLogo;
 
 - (void)updateInfo;
 - (void)getSongURL;
