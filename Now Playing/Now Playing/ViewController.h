@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSURL *songURL;
 @property (strong, nonatomic) IBOutlet UIButton *tweetBox;
 @property (strong, nonatomic) UIImageView *twitterLogo;
+@property (strong, nonatomic) MPMusicPlayerController *musicPlayer;
 
 - (void)updateInfo;
 - (void)getSongURL;

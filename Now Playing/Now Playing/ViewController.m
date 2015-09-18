@@ -70,27 +70,108 @@
 }
 
 - (void)handleSwipeLeft {
-  MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
-  [musicPlayer skipToNextItem];
+  [self displayTransitionImage:1];
+  
+  [self.musicPlayer skipToNextItem];
   [self updateInfo];
 }
 
 - (void)handleSwipeRight {
-  MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
-  [musicPlayer skipToPreviousItem];
+  [self displayTransitionImage:2];
+  
+  [self.musicPlayer skipToPreviousItem];
   [self updateInfo];
 }
 
 - (void)handleTap {
-  MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
-  if (musicPlayer.playbackState == MPMusicPlaybackStatePaused || musicPlayer.playbackState == MPMusicPlaybackStateStopped) {
-    [musicPlayer play];
+  if (self.musicPlayer.playbackState == MPMusicPlaybackStatePaused
+      || self.musicPlayer.playbackState == MPMusicPlaybackStateStopped) {
+    [self displayTransitionImage:3];
+    [self.musicPlayer play];
   }
-  else if (musicPlayer.playbackState == MPMusicPlaybackStatePlaying) {
-    [musicPlayer pause];
+  else if (self.musicPlayer.playbackState == MPMusicPlaybackStatePlaying) {
+    [self displayTransitionImage:4];
+    [self.musicPlayer pause];
   }
   [self updateInfo];
 }
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)displayTransitionImage:(NSInteger)whichImage {
+  UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, albumArt.frame.size.width, albumArt.frame.size.height)];
+  img.center = albumArt.center;
+  
+  switch (whichImage) {
+    case 1:
+      img.image = [UIImage imageNamed:@"forward.png"];
+      break;
+    case 2:
+      img.image = [UIImage imageNamed:@"rewind.png"];
+      break;
+    case 3:
+      img.image = [UIImage imageNamed:@"play.png"];
+      break;
+    case 4:
+      img.image = [UIImage imageNamed:@"pause.png"];
+      break;
+    default:
+      break;
+  }
+  
+//  [img startAnimating];
+  [self.view insertSubview:img aboveSubview:albumArt];
+  img.alpha = 0.0;
+  
+  [UIView animateWithDuration:0.0
+                        delay:0.0
+                      options:UIViewAnimationOptionCurveEaseIn
+                   animations:^{img.alpha = 1.0;}
+                   completion:^(BOOL finished){
+                                if (finished) {
+                                  [UIView animateWithDuration:1.0
+                                                        delay:0.25
+                                                      options:UIViewAnimationOptionCurveEaseOut
+                                                   animations:^{img.alpha = 0.0;}
+                                                   completion:^(BOOL finished){
+                                                                if (finished) {
+                                                                  [img removeFromSuperview];
+                                                                }
+                                                                }];
+                                }
+                              }];
+  
+  
+  
+  
+  
+  
+  
+//  [UIView animateWithDuration:0.0 animations:^{
+//    img.alpha = 0.0;
+//  }];
+//  [img stopAnimating];
+//
+//  
+//  [img startAnimating];
+//  // fade in
+//  [UIView animateWithDuration:3.0 animations:^{
+//    img.alpha = 1.0;
+//  }];
+//  [img stopAnimating];
+  
+//  [img startAnimating];
+  // fade out
+//  [UIView animateWithDuration:1.0 animations:^{
+//    img.alpha = 0.0;
+//  }];
+//  [img stopAnimating];
+//  [img removeFromSuperview];
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 
@@ -213,6 +294,7 @@
   }
   
   nowPlaying = [[NowPlaying alloc] init];
+  self.musicPlayer = [MPMusicPlayerController systemMusicPlayer];
   
   [self updateInfo];
   
