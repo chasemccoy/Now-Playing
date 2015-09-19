@@ -30,11 +30,12 @@
 @property (strong, nonatomic) IBOutlet UIButton *tweetBox;
 @property (strong, nonatomic) UIImageView *twitterLogo;
 @property (strong, nonatomic) MPMusicPlayerController *musicPlayer;
+@property (strong, nonatomic) NSMutableArray *controlImages;
 
 - (void)updateInfo;
 - (void)getSongURL;
 - (IBAction)tweetButton:(id)sender;
--(void)createTweetSheet;
+- (void)createTweetSheet;
 - (void)handleSwipeLeft;
 - (void)handleSwipeRight;
 - (void)handleTap;

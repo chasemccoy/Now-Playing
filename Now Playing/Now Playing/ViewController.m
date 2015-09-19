@@ -70,14 +70,14 @@
 }
 
 - (void)handleSwipeLeft {
-  [self displayTransitionImage:1];
+  [self displayTransitionImage_try2:1];
   
   [self.musicPlayer skipToNextItem];
   [self updateInfo];
 }
 
 - (void)handleSwipeRight {
-  [self displayTransitionImage:2];
+  [self displayTransitionImage_try2:2];
   
   [self.musicPlayer skipToPreviousItem];
   [self updateInfo];
@@ -86,11 +86,11 @@
 - (void)handleTap {
   if (self.musicPlayer.playbackState == MPMusicPlaybackStatePaused
       || self.musicPlayer.playbackState == MPMusicPlaybackStateStopped) {
-    [self displayTransitionImage:3];
+    [self displayTransitionImage_try2:3];
     [self.musicPlayer play];
   }
   else if (self.musicPlayer.playbackState == MPMusicPlaybackStatePlaying) {
-    [self displayTransitionImage:4];
+    [self displayTransitionImage_try2:4];
     [self.musicPlayer pause];
   }
   [self updateInfo];
@@ -103,6 +103,7 @@
 - (void)displayTransitionImage:(NSInteger)whichImage {
   UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, albumArt.frame.size.width, albumArt.frame.size.height)];
   img.center = albumArt.center;
+  NSTimeInterval fadeInDuration = 0.0;
   
   switch (whichImage) {
     case 1:
@@ -113,26 +114,27 @@
       break;
     case 3:
       img.image = [UIImage imageNamed:@"play.png"];
+//      fadeInDuration = 0.05;
       break;
     case 4:
       img.image = [UIImage imageNamed:@"pause.png"];
+//      fadeInDuration = 0.05;
       break;
     default:
       break;
   }
   
-//  [img startAnimating];
   [self.view insertSubview:img aboveSubview:albumArt];
   img.alpha = 0.0;
   
-  [UIView animateWithDuration:0.0
+  [UIView animateWithDuration:fadeInDuration
                         delay:0.0
                       options:UIViewAnimationOptionCurveEaseIn
                    animations:^{img.alpha = 1.0;}
                    completion:^(BOOL finished){
                                 if (finished) {
                                   [UIView animateWithDuration:1.0
-                                                        delay:0.25
+                                                        delay:0.3
                                                       options:UIViewAnimationOptionCurveEaseOut
                                                    animations:^{img.alpha = 0.0;}
                                                    completion:^(BOOL finished){
@@ -142,36 +144,33 @@
                                                                 }];
                                 }
                               }];
-  
-  
-  
-  
-  
-  
-  
-//  [UIView animateWithDuration:0.0 animations:^{
-//    img.alpha = 0.0;
-//  }];
-//  [img stopAnimating];
-//
-//  
-//  [img startAnimating];
-//  // fade in
-//  [UIView animateWithDuration:3.0 animations:^{
-//    img.alpha = 1.0;
-//  }];
-//  [img stopAnimating];
-  
-//  [img startAnimating];
-  // fade out
-//  [UIView animateWithDuration:1.0 animations:^{
-//    img.alpha = 0.0;
-//  }];
-//  [img stopAnimating];
-//  [img removeFromSuperview];
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)displayTransitionImage_try2:(NSInteger)whichImage {
+  NSLog(@"displaying!");
+  UIImageView *img = self.controlImages[whichImage - 1];
+  NSTimeInterval fadeInDuration = 0.0;
+  
+  [UIView animateWithDuration:fadeInDuration
+                        delay:0.0
+                      options:UIViewAnimationOptionCurveEaseIn
+                   animations:^{img.alpha = 1.0;}
+                   completion:^(BOOL finished){
+                                if (finished) {
+                                  [UIView animateWithDuration:1.0
+                                                        delay:0.3
+                                                      options:UIViewAnimationOptionCurveEaseOut
+                                                   animations:^{img.alpha = 0.0;}
+                                                   completion:^(BOOL finished){NSLog(@"finished");}];
+                                }
+                              }];
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -305,6 +304,35 @@
   NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
   [notificationCenter addObserver:self selector:@selector(updateInfo) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
                            object:musicPlayer];
+  
+  
+//  //////////////////////
+//  CGRect viewFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width);
+//  UIImageView *tempImage;
+//  for (int i = 0; i < 4; i++) {
+//    tempImage = [[UIImageView alloc] initWithFrame:viewFrame];
+//    switch (i) {
+//      case 0:
+//        tempImage.image = [UIImage imageNamed:@"forward.png"];
+//        break;
+//      case 1:
+//        tempImage.image = [UIImage imageNamed:@"rewind.png"];
+//        break;
+//      case 2:
+//        tempImage.image = [UIImage imageNamed:@"play.png"];
+//        break;
+//      case 3:
+//        tempImage.image = [UIImage imageNamed:@"pause.png"];
+//        break;
+//      default:
+//        break;
+//    }
+//    tempImage.center = albumArt.center;
+////    tempImage.alpha = 0.0;
+//    [self.controlImages addObject:tempImage];
+//    [self.view insertSubview:tempImage aboveSubview:albumArt];
+//  }
+//  ///////////////////////
 }
 
 
@@ -314,6 +342,42 @@
   [super viewWillAppear:animated];
   
   [self updateInfo];
+}
+
+
+
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  
+  //////////////////////
+  self.controlImages = [[NSMutableArray alloc] init];
+  CGRect viewFrame = CGRectMake(0, 0, albumArt.frame.size.width, albumArt.frame.size.height);
+  UIImageView *tempImage;
+  for (int i = 0; i < 4; i++) {
+    tempImage = [[UIImageView alloc] initWithFrame:viewFrame];
+    switch (i) {
+      case 0:
+        tempImage.image = [UIImage imageNamed:@"forward.png"];
+        break;
+      case 1:
+        tempImage.image = [UIImage imageNamed:@"rewind.png"];
+        break;
+      case 2:
+        tempImage.image = [UIImage imageNamed:@"play.png"];
+        break;
+      case 3:
+        tempImage.image = [UIImage imageNamed:@"pause.png"];
+        break;
+      default:
+        break;
+    }
+    tempImage.center = albumArt.center;
+    tempImage.alpha = 0.0;
+    [self.controlImages addObject:tempImage];
+    [self.view insertSubview:tempImage aboveSubview:albumArt];
+  }
+  ///////////////////////
 }
 
 
