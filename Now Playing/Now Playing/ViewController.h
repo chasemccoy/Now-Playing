@@ -31,7 +31,7 @@
 @property (strong, nonatomic) UIImageView *twitterLogo;
 @property (strong, nonatomic) MPMusicPlayerController *musicPlayer;
 @property (strong, nonatomic) NSMutableArray *controlImages;
-@property (strong, nonatomic) UIImageView *tutorial;
+@property (strong, nonatomic) UIView *tutorial;
 
 - (void)updateInfo;
 - (void)getSongURL;

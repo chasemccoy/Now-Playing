@@ -347,25 +347,31 @@
 
 
 - (void)showTutorial {
-  self.tutorial = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tutorial.png"]];
+  self.tutorial = [[UIView alloc] initWithFrame:self.view.frame];
+  self.tutorial.backgroundColor = [UIColor blackColor];
+  
+  UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tutorial.png"]];
+  imgView.contentMode = UIViewContentModeScaleAspectFit;
+  CGRect tempFrame = imgView.frame;
+  tempFrame.size.width = self.view.frame.size.width - 40;
+  imgView.frame = tempFrame;
+  imgView.center = self.view.center;
+  [self.tutorial addSubview:imgView];
+  
+  self.tutorial.userInteractionEnabled = YES;
   UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fadeOutTutorial)];
   tap.numberOfTapsRequired = 1;
   [self.tutorial addGestureRecognizer:tap];
+  [self.view addSubview:self.tutorial];
   
-//  UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Hey there!"
-//                                                       message:@"Tap the Tweet button to share the song you're listening to on Twitter. The album art and a link to the song will be included.\n\nTap the album art to play/pause.\n\nSwipe left to go the next song, and right to go to the previous one."
-//                                                      delegate:self
-//                                             cancelButtonTitle:@"OK"
-//                                             otherButtonTitles:nil, nil];
-//  [errorAlert show];
-//  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstLaunch"];
+  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstLaunch"];
 }
 
 
 
 
 - (void)fadeOutTutorial {
-  [UIView animateWithDuration:1.0
+  [UIView animateWithDuration:1.5
                         delay:0.0
                       options:UIViewAnimationOptionCurveEaseOut
                    animations:^{self.tutorial.alpha = 0.0;}
