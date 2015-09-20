@@ -70,14 +70,18 @@
 }
 
 - (void)handleSwipeLeft {
-  [self displayTransitionImage_try2:1];
+  NSLog(@"starting...");
+  [self displayTransitionImage:1];
+  NSLog(@"done!");
   
   [self.musicPlayer skipToNextItem];
   [self updateInfo];
 }
 
 - (void)handleSwipeRight {
-  [self displayTransitionImage_try2:2];
+  NSLog(@"starting...");
+  [self displayTransitionImage:2];
+  NSLog(@"done!");
   
   [self.musicPlayer skipToPreviousItem];
   [self updateInfo];
@@ -86,11 +90,17 @@
 - (void)handleTap {
   if (self.musicPlayer.playbackState == MPMusicPlaybackStatePaused
       || self.musicPlayer.playbackState == MPMusicPlaybackStateStopped) {
-    [self displayTransitionImage_try2:3];
+    NSLog(@"starting...");
+    [self displayTransitionImage:3];
+    NSLog(@"done!");
+    
     [self.musicPlayer play];
   }
   else if (self.musicPlayer.playbackState == MPMusicPlaybackStatePlaying) {
-    [self displayTransitionImage_try2:4];
+    NSLog(@"starting...");
+    [self displayTransitionImage:4];
+    NSLog(@"done!");
+    
     [self.musicPlayer pause];
   }
   [self updateInfo];
@@ -99,7 +109,7 @@
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 - (void)displayTransitionImage:(NSInteger)whichImage {
   UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, albumArt.frame.size.width, albumArt.frame.size.height)];
   img.center = albumArt.center;
@@ -145,32 +155,9 @@
                                 }
                               }];
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)displayTransitionImage_try2:(NSInteger)whichImage {
-  NSLog(@"displaying!");
-  UIImageView *img = self.controlImages[whichImage - 1];
-  NSTimeInterval fadeInDuration = 0.0;
-  
-  [UIView animateWithDuration:fadeInDuration
-                        delay:0.0
-                      options:UIViewAnimationOptionCurveEaseIn
-                   animations:^{img.alpha = 1.0;}
-                   completion:^(BOOL finished){
-                                if (finished) {
-                                  [UIView animateWithDuration:1.0
-                                                        delay:0.3
-                                                      options:UIViewAnimationOptionCurveEaseOut
-                                                   animations:^{img.alpha = 0.0;}
-                                                   completion:^(BOOL finished){NSLog(@"finished");}];
-                                }
-                              }];
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -304,35 +291,6 @@
   NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
   [notificationCenter addObserver:self selector:@selector(updateInfo) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
                            object:musicPlayer];
-  
-  
-//  //////////////////////
-//  CGRect viewFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width);
-//  UIImageView *tempImage;
-//  for (int i = 0; i < 4; i++) {
-//    tempImage = [[UIImageView alloc] initWithFrame:viewFrame];
-//    switch (i) {
-//      case 0:
-//        tempImage.image = [UIImage imageNamed:@"forward.png"];
-//        break;
-//      case 1:
-//        tempImage.image = [UIImage imageNamed:@"rewind.png"];
-//        break;
-//      case 2:
-//        tempImage.image = [UIImage imageNamed:@"play.png"];
-//        break;
-//      case 3:
-//        tempImage.image = [UIImage imageNamed:@"pause.png"];
-//        break;
-//      default:
-//        break;
-//    }
-//    tempImage.center = albumArt.center;
-////    tempImage.alpha = 0.0;
-//    [self.controlImages addObject:tempImage];
-//    [self.view insertSubview:tempImage aboveSubview:albumArt];
-//  }
-//  ///////////////////////
 }
 
 
@@ -347,41 +305,6 @@
 
 
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  
-  //////////////////////
-  self.controlImages = [[NSMutableArray alloc] init];
-  CGRect viewFrame = CGRectMake(0, 0, albumArt.frame.size.width, albumArt.frame.size.height);
-  UIImageView *tempImage;
-  for (int i = 0; i < 4; i++) {
-    tempImage = [[UIImageView alloc] initWithFrame:viewFrame];
-    switch (i) {
-      case 0:
-        tempImage.image = [UIImage imageNamed:@"forward.png"];
-        break;
-      case 1:
-        tempImage.image = [UIImage imageNamed:@"rewind.png"];
-        break;
-      case 2:
-        tempImage.image = [UIImage imageNamed:@"play.png"];
-        break;
-      case 3:
-        tempImage.image = [UIImage imageNamed:@"pause.png"];
-        break;
-      default:
-        break;
-    }
-    tempImage.center = albumArt.center;
-    tempImage.alpha = 0.0;
-    [self.controlImages addObject:tempImage];
-    [self.view insertSubview:tempImage aboveSubview:albumArt];
-  }
-  ///////////////////////
-}
-
-
-
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
@@ -391,10 +314,12 @@
 
 
 
+
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
   return UIStatusBarStyleLightContent;
 }
+
 
 
 
@@ -411,6 +336,7 @@
 
 
 
+
 - (void)setBackgroundColor:(UIImage*)image {
   _colorPicker = [[DBImageColorPicker alloc] initFromImage:image withBackgroundType:DBImageColorPickerBackgroundTypeDefault];
   self.view.backgroundColor = [_colorPicker backgroundColor];
@@ -421,14 +347,33 @@
 
 
 - (void)showTutorial {
-  UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Hey there!"
-                                                       message:@"Tap the Tweet button to share the song you're listening to on Twitter. The album art and a link to the song will be included.\n\nTap the album art to play/pause.\n\nSwipe left to go the next song, and right to go to the previous one."
-                                                      delegate:self
-                                             cancelButtonTitle:@"OK"
-                                             otherButtonTitles:nil, nil];
-  [errorAlert show];
-  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstLaunch"];
+  self.tutorial = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tutorial.png"]];
+  UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fadeOutTutorial)];
+  tap.numberOfTapsRequired = 1;
+  [self.tutorial addGestureRecognizer:tap];
+  
+//  UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Hey there!"
+//                                                       message:@"Tap the Tweet button to share the song you're listening to on Twitter. The album art and a link to the song will be included.\n\nTap the album art to play/pause.\n\nSwipe left to go the next song, and right to go to the previous one."
+//                                                      delegate:self
+//                                             cancelButtonTitle:@"OK"
+//                                             otherButtonTitles:nil, nil];
+//  [errorAlert show];
+//  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstLaunch"];
+}
 
+
+
+
+- (void)fadeOutTutorial {
+  [UIView animateWithDuration:1.0
+                        delay:0.0
+                      options:UIViewAnimationOptionCurveEaseOut
+                   animations:^{self.tutorial.alpha = 0.0;}
+                   completion:^(BOOL finished){
+                                if (finished) {
+                                  [self.tutorial removeFromSuperview];
+                                }
+                   }];
 }
 
 @end

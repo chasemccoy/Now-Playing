@@ -31,6 +31,7 @@
 @property (strong, nonatomic) UIImageView *twitterLogo;
 @property (strong, nonatomic) MPMusicPlayerController *musicPlayer;
 @property (strong, nonatomic) NSMutableArray *controlImages;
+@property (strong, nonatomic) UIImageView *tutorial;
 
 - (void)updateInfo;
 - (void)getSongURL;
@@ -41,6 +42,7 @@
 - (void)handleTap;
 - (void)setBackgroundColor:(UIImage*)image;
 - (void)showTutorial;
+- (void)fadeOutTutorial;
 
 @end
 
