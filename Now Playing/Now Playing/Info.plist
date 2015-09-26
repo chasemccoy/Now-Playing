@@ -45,6 +45,17 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>darkTwitter</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Tweet Song</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>nowPlaying.tweetSong</string>
+		</dict>
+	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

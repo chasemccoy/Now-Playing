@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +26,13 @@
   self.window.bounds = CGRectMake(0, 20, self.window.frame.size.width, self.window.frame.size.height);
   
   return YES;
+}
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem
+                                                            completionHandler:(void (^)(BOOL))completionHandler {
+  
+  ViewController *rootViewController = (ViewController*)self.window.rootViewController;
+  [rootViewController tweetButton:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
