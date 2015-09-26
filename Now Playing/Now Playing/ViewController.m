@@ -197,17 +197,19 @@
 // ****************************************
 
 - (IBAction)tweetButton:(id)sender {
-  MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-  hud.labelText = @"Getting Link...";
-  hud.color = self.colorPicker.backgroundColor;
-  hud.labelColor = self.colorPicker.secondaryTextColor;
-  hud.activityIndicatorColor = self.colorPicker.secondaryTextColor;
-  hud.dimBackground = YES;
-  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
-  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    [self createTweetSheet];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-  });
+  if ([nowPlaying getSongTitle]) {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Getting Link...";
+    hud.color = self.colorPicker.backgroundColor;
+    hud.labelColor = self.colorPicker.secondaryTextColor;
+    hud.activityIndicatorColor = self.colorPicker.secondaryTextColor;
+    hud.dimBackground = YES;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+      [self createTweetSheet];
+      [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
+  }
 }
 
 
